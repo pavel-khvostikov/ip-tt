@@ -19,7 +19,6 @@ public class App {
         Gson gson = new Gson();
         DateFormat formatter = new SimpleDateFormat("dd.MM.yy,HH:mm");
         ArrayList<Long> timeDeltas = new ArrayList<>();
-        int i = 0;
         long timesSum = 0;
 
         try {
@@ -35,11 +34,11 @@ public class App {
                 long delta = Math.abs(arrival.getTime() - departure.getTime());
                 timeDeltas.add(delta);
                 timesSum += delta;
-                i += 1;
             }
 
             Collections.sort(timeDeltas);
-            int p = (int) Math.ceil(90 / 100.0 * timeDeltas.size());
+            int i = timeDeltas.size();
+            int p = (int) Math.ceil(90 / 100.0 * i);
 
             long averageFlightTime = timesSum / i;
             long percentile = timeDeltas.get(p - 1);
